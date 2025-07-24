@@ -1,0 +1,29 @@
+데이터베이스 만들기  - create database a;
+테이블 만들기  -  create table box(name varchar(16) );
+데이터베이스 목록 확인  - show databases;
+테이블 목록확인 - show tables;
+데이터베이스 선택 - use 데이터베이스명;
+데이터 삽입(저장) - insert into  테이블명 values(데이터);
+insert into 테이블명(컬러명, 컬러명) values(데이터,데이터);
+
+데이터 삭제 - delete from 테이블명 where 조건;
+데이터 수정 - update 테이블명 set 컬러명='변경데이터' where 조건;
+데이터 조회(출력) - select * from 테이블명;
+계정생성 및 권한  
+
+- create user 유저명 identified by '비밀번호';
+- grant all privileges on a.* to '유저'@'%';
+- grant update on a.b to '유저'@'%';
+- grant select, delete,insert on a.* to '유저'@'%';
+
+
+
+
+공유폴더 
+
+하단 돋보기모양 에서 찾기!
+\\192.168.0.68  입력 하고 엔터 
+
+공유폴더에 들어가서  과제 폴더에 각자 이름 의 폴더 만들어서
+과제 넣으면 되요
+

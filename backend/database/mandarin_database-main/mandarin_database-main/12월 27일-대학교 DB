@@ -1,0 +1,62 @@
+
+create table department(
+	dept_no int primary key,
+	dept_name varchar(14),
+	chief int,
+	assistant varchar(8),
+	dept_tel int,
+	location varchar(4)
+);
+
+
+create table professor(
+	p_no int primary key,
+	p_name varchar(10),
+	grade varchar(6),
+	dept_no int,
+	room_no varchar(4),
+	p_tel int,
+	p_address varchar(30),
+	p_birth date,
+	join_date date,
+	pay_step int
+);
+
+
+create table course(
+	c_no int primary key, 
+	c_name varchar(20),
+	times varchar(1),
+	point varchar(1),
+	R_O varchar(1)
+);
+
+create table student(
+	s_no int primary key,
+	s_name varchar(10),
+	dept varchar(14),
+	year int,
+	s_tel int,
+	s_address varchar(30),
+	advisor int,
+	s_birth date
+);
+
+
+create table lecture(
+	c_no int,
+	p_no int,
+	day_week varchar(3),
+	start_time varchar(1),
+	room_no varchar(4),
+primary key(c_no,p_no)
+);
+
+create table enrollment(
+	c_no int primary key,
+	s_no int,
+	grade varchar(2),
+	merits int
+);
+
+

@@ -1,0 +1,45 @@
+1.  학과 테이블에서  조교 가 이씨 인 학과이름과 전화 번호를 출력
+
+2. 교수 테이블에서  조교수 이면서 호봉이 10이상인 사람이 몇명인가?
+
+3. 학생 테이블에서 김씨가 아니면서 태어난 월이 10월인 학생의 이름, 학과, 학년 출력
+
+4. 등록 테이블에서 점수가 80점이상 90점 미만 인 학생중에 학번이 99 학번이고
+강좌가 1번이 학생의 학번 을 출력
+
+스페셜 문제
+1. 등록 테이블에서 A+ 받은 학생의 강좌 번호를 알아 내고 
+   강좌 테이블에 적용하여 해당 강좌가 몇 학점 이며 강좌이름은 무엇인지 출력
+2. 학생 테이블 에서 컴퓨터 공학과인 학생의 학번을 알아내어  
+    등록 테이블에 적용하여 강봐 번호가 무엇인지 찾고
+    찾은 번호를 강좌 테이블에 적용 하여 강좌 이름과 학점을 출력
+
+
+
+
+정답
+
+select dept_name, dept_tel from department  where assistant like '이%';
+-- 컴공, 정산, 전공3개
+select count(*) from professor  where grade='조교수' and pay_step >=10;
+-- 8명
+select s_name, dept, year from student  
+where not s_name like '김%' and s_birth  like '%-10-%';
+-- 5명
+select s_no from enrollment where 
+merits >=80 and merits <90 and s_no like '99%' and 
+c_no=1;
+-- 1명
+
+select c_no from enrollment where grade='A+';
+select c_name, point from course where c_no=1 or c_no=6;
+-- 정보사회 , 컴퓨터구조
+
+select s_no from student where dept='컴퓨터공학과';
+-- 9611035, 9811015, 9911001, 9911003
+select distinct c_no from enrollment where s_no=9611035
+or s_no=9811015 or s_no=9911001 or s_no=9911003;
+-- 1 4 6
+select c_name, point from course where c_no=1 or c_no=4 or c_no=6;
+
+

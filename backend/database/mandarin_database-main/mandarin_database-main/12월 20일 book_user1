@@ -1,0 +1,135 @@
+Microsoft Windows [Version 10.0.19045.5247]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\dw-201>mysql -u book_user1 -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 25
+Server version: 8.0.35 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| book               |
+| information_schema |
+| performance_schema |
++--------------------+
+3 rows in set (0.00 sec)
+
+mysql> use book;
+Database changed
+mysql> create table computer_book(title varchar(128), page int(4), cost int ,
+    -> author varchar(64) );
+Query OK, 0 rows affected, 1 warning (0.04 sec)
+
+mysql> insert into computer_book(title, author) values('java','제임스');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from computer_book;
++-------+------+------+--------+
+| title | page | cost | author |
++-------+------+------+--------+
+| java  | NULL | NULL | 제임스 |
++-------+------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> create table art_book(title varchar(128), page int(4) not null,
+    -> cost int, author varchar(64) );
+Query OK, 0 rows affected, 1 warning (0.05 sec)
+
+mysql> desc computer_book;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| title  | varchar(128) | YES  |     | NULL    |       |
+| page   | int          | YES  |     | NULL    |       |
+| cost   | int          | YES  |     | NULL    |       |
+| author | varchar(64)  | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc art_book;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| title  | varchar(128) | YES  |     | NULL    |       |
+| page   | int          | NO   |     | NULL    |       |
+| cost   | int          | YES  |     | NULL    |       |
+| author | varchar(64)  | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into art_book(title, cost) values('html5' , 23000);
+ERROR 1364 (HY000): Field 'page' doesn't have a default value
+mysql>
+mysql> insert into art_book(title, page, cost) values('html5', 312,23000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> create table music_book( title varchar(128), page int(4),
+    -> cost int default 0 );
+Query OK, 0 rows affected, 1 warning (0.04 sec)
+
+mysql> desc music_book;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| title | varchar(128) | YES  |     | NULL    |       |
+| page  | int          | YES  |     | NULL    |       |
+| cost  | int          | YES  |     | 0       |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+///----------   book_list 테이블 작업 -----------------///////////
+mysql> create table book_list(num int(8) not null, title varchar(128) not null,
+    -> cost int(6) default 0, author varchar(64) );
+Query OK, 0 rows affected, 2 warnings (0.05 sec)
+
+mysql> insert into book_list values(1, 'java언어', 35000, '김삿갓');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into book_list values(2, 'C 언어', 25000, '박문수');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into book_list values(3, 'html&css', 31500, '임꺽정');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into book_list values(4, '스피링3.0', 31000, '이순신');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into book_list values(5, '그림으로보는유니티', 29800, '장영실');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into book_list values(6, '그림으로보는자바', 34500, '정도전');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into book_list values(7, '그림으로보는자료구조', 26000, '홍길동');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into book_list values(8, 'IT의 미래', 15000, '김춘추');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from book_list;
++-----+----------------------+-------+--------+
+| num | title                | cost  | author |
++-----+----------------------+-------+--------+
+|   1 | java언어             | 35000 | 김삿갓 |
+|   2 | C 언어               | 25000 | 박문수 |
+|   3 | html&css             | 31500 | 임꺽정 |
+|   4 | 스피링3.0            | 31000 | 이순신 |
+|   5 | 그림으로보는유니티   | 29800 | 장영실 |
+|   6 | 그림으로보는자바     | 34500 | 정도전 |
+|   7 | 그림으로보는자료구조 | 26000 | 홍길동 |
+|   8 | IT의 미래            | 15000 | 김춘추 |
++-----+----------------------+-------+--------+
+8 rows in set (0.00 sec)
+
+mysql>
